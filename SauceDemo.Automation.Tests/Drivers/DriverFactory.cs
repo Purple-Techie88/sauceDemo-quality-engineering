@@ -13,6 +13,7 @@ namespace SauceDemo.Automation.Tests.Drivers
             new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
 
             var options = new ChromeOptions();
+            options.AddUserProfilePreference("profile.password_manager_leak_detection", false);
             if (headless)
             {
                 options.AddArgument("--headless=new");
