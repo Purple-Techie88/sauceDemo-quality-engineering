@@ -1,4 +1,5 @@
 using SauceDemo.Automation.Tests.Drivers;
+using SauceDemo.Automation.Tests.Pages;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using System;
@@ -27,6 +28,14 @@ public class Hooks
 
         IWebDriver driver = DriverFactory.CreateChromeDriver(headless);
         DriverContext.Set(_scenarioContext, driver);
+
+        var container = _scenarioContext.ScenarioContainer;
+        container.RegisterInstanceAs(driver);
+        container.RegisterTypeAs<LoginPage, LoginPage>();
+        container.RegisterTypeAs<InventoryPage, InventoryPage>();
+        container.RegisterTypeAs<YourCartPage, YourCartPage>();
+        container.RegisterTypeAs<CheckoutStepOnePage, CheckoutStepOnePage>();
+        container.RegisterTypeAs<CheckoutStepTwoPage, CheckoutStepTwoPage>();
     }
 
     [AfterScenario]
